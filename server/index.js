@@ -1,7 +1,12 @@
-require('dotenv').config();np
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
+
+// (Three lines below) setup for database queries
+const knex = require(knex);
+const dbConfig = require('./knexfile').development;
+const db = knex(dbConfig);
 
 // Middleware
 app.use(cors());
