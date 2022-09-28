@@ -19,7 +19,13 @@ app.use(express.json());
 
 app.post('/todos', async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
+    const { description } = req.body;
+    const newTodo = await db('todo')
+      .returning('*')
+      .insert({ description: description });
+      // (Line below) 'returning('*')' is used whenever you're inserting, updating or deleting 
+    res.json(newTodo[0]);
   } catch (err) {
     console.log(err.message);
   }
