@@ -25,7 +25,7 @@ app.post('/todos', async (req, res) => {
     const newTodo = await db('todo')
       .returning('*')
       .insert({ description: description });
-      // (Line below) 'returning('*')' is used whenever you're inserting, updating or deleting 
+    // (Line below) 'returning('*')' is used whenever you're inserting, updating or deleting 
     res.json(newTodo[0]);
   } catch (err) {
     console.log(err.message);
@@ -46,6 +46,20 @@ app.get('/todos', async (req, res) => {
 });
 
 // Get a todo
+
+// (Line below) ':id' allows the url to be dynamic. It also gives the API access to 'req.params'
+app.get('/todos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const todo = await db
+      .select()
+      .from('todo')
+      .where({ 'todo_id': id});
+    res.json(todo[0]);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
 
 // Update a todo
 
