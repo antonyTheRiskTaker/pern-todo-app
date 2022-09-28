@@ -17,6 +17,7 @@ app.use(express.json());
 
 // Create a todo
 
+// (Line below) async keyword is used because accessing a database is an asynchronous operation
 app.post('/todos', async (req, res) => {
   try {
     // console.log(req.body);
@@ -32,6 +33,17 @@ app.post('/todos', async (req, res) => {
 });
 
 // Get all todos
+
+app.get('/todos', async (req, res) => {
+  try {
+    const allTodos = await db
+      .select() // Defaulting to '*' when there is no argument
+      .from('todo');
+    res.json(allTodos);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
 
 // Get a todo
 
