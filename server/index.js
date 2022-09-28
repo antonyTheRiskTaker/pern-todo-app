@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 
 // (Three lines below) setup for database queries
-const knex = require(knex);
+const knex = require('knex');
 const dbConfig = require('./knexfile').development;
 const db = knex(dbConfig);
 
@@ -16,6 +16,14 @@ app.use(express.json());
 /* ROUTES */
 
 // Create a todo
+
+app.post('/todos', async (req, res) => {
+  try {
+    console.log(req.body);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
 
 // Get all todos
 
