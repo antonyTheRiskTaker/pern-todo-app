@@ -11,7 +11,7 @@ const InputTodo = () => {
 
       // (Lines below) using axios
       const response = await axios.post('http://localhost:5000/todos', 
-      {description: JSON.stringify(body)}, 
+      body, 
       {headers: {'Content-Type': 'application/json'}}
       );
 
