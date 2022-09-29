@@ -54,7 +54,7 @@ app.get('/todos/:id', async (req, res) => {
     const todo = await db
       .select()
       .from('todo')
-      .where({ 'todo_id': id});
+      .where({ 'todo_id': id });
     res.json(todo[0]);
   } catch (err) {
     console.log(err.message);
