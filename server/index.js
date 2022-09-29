@@ -63,6 +63,23 @@ app.get('/todos/:id', async (req, res) => {
 
 // Update a todo
 
+app.put('/todos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+    const updateTodo = await db('todo')
+      .where({ todo_id: id })
+      .update({ 
+        description: description 
+      }, ['description']);
+      // (Line above) the returning array holding 'description' is a shortcut for the returning method
+    
+    res.json("Todo was updated!");
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 // Delete a todo
 
 app.listen(5000, () => {
