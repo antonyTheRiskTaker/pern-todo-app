@@ -2,8 +2,22 @@ import React, { Fragment, useEffect, useState } from "react";
 import axios from 'axios';
 
 const ListTodos = () => {
-  
   const [todos, setTodos] = useState([]);
+
+  // Delete todo function
+  const deleteTodo = async (id) => {
+    try {
+      const deleteTodo = await axios
+        .delete(`http://localhost:5000/todos/${id}`);
+      
+      // console.log(deleteTodo);
+      
+      // (Line below) the filter method only keeps any todo whose id doesn't match that of the deleted todo. The setTodos then resets the state and the component rerenders
+      setTodos(todos.filter(todo => todo.todo_id !== id));
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
 
   const getTodos = async () => {
     try {
@@ -25,7 +39,7 @@ const ListTodos = () => {
   }, []);
   // (Line above) the empty array makes sure the useEffect only makes one request until any changes occur and the component renders
 
-  console.log(todos);
+  // console.log(todos);
   return (
     <Fragment>
       <table className='table mt-5 text-center'>
@@ -43,10 +57,16 @@ const ListTodos = () => {
             <td>john@example.com</td>
           </tr>*/}
           {todos.map(todo => (
-            <tr>
+            <tr key={todo.todo_id}>
               <td>{todo.description}</td>
               <td>Edit</td>
-              <td>Delete</td>
+              <td>
+                <button
+                  className='btn btn-danger'
+                  onClick={() => deleteTodo(todo.todo_id)}
+                >Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
