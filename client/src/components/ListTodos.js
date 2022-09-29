@@ -45,6 +45,8 @@ const ListTodos = () => {
           {todos.map(todo => (
             <tr>
               <td>{todo.description}</td>
+              <td>Edit</td>
+              <td>Delete</td>
             </tr>
           ))}
         </tbody>
