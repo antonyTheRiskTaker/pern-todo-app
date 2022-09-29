@@ -7,6 +7,7 @@ const InputTodo = () => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
+      // (Line below) the body is an object that has a key called 'description' and its corresponding the content of the todo description
       const body = { description };
 
       // (Lines below) using axios
