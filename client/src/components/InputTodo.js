@@ -8,7 +8,7 @@ const InputTodo = () => {
     e.preventDefault();
     try {
       const body = { description };
-      
+
       // (Lines below) using axios
       const response = await axios.post('http://localhost:5000/todos', 
       {description: JSON.stringify(body)}, 
@@ -22,7 +22,8 @@ const InputTodo = () => {
       //   body: JSON.stringify(body)
       // });
 
-      console.log(response);
+      // (Line below) redirect back to the homepage where the changes can be seen
+      window.location = '/';
     } catch (err) {
       console.log(err.message);
     }
