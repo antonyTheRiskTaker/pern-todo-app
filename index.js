@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const PORT = process.env.PORT || 5000;
 
 // (Three lines below) setup for database queries
 const knex = require('knex');
@@ -94,6 +95,6 @@ app.delete('/todos/:id', async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log(`server has started on port 5000`);
+app.listen(PORT, () => {
+  console.log(`server has started on port ${PORT}`);
 });
