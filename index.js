@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const path = require('path');
 const cors = require('cors');
 const PORT = process.env.PORT || 5000;
 
@@ -13,6 +14,12 @@ const db = knex(dbConfig);
 app.use(cors());
 // A full-stack application needs to get data from the client side and the only way to do this is that we have to get it from the `request.body` object.
 app.use(express.json());
+
+if (process.env.NODE_ENV === 'production') {
+  // Server static content
+  // npm run build
+  app.use(express.static(path.join(__dirname, 'client/build')));
+} 
 
 /* ROUTES */
 
