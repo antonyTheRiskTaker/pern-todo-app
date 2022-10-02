@@ -11,7 +11,7 @@ const ListTodos = () => {
   const deleteTodo = async (id) => {
     try {
       const deleteTodo = await axios
-        .delete(`http://localhost:5000/todos/${id}`);
+        .delete(`/todos/${id}`);
       
       // console.log(deleteTodo);
       
@@ -24,7 +24,7 @@ const ListTodos = () => {
 
   const getTodos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/todos');
+      const response = await axios.get('/todos');
       // (Line below) parsing data into JSON format is an asynchronous operation
       // (Line below) this line is not necessary unless you use fetch to http requests
       // const jsonData = await response.json();

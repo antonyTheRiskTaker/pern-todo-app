@@ -11,13 +11,13 @@ const InputTodo = () => {
       const body = { description };
 
       // (Lines below) using axios
-      const response = await axios.post('http://localhost:5000/todos', 
+      const response = await axios.post('/todos', 
       body, 
       {headers: {'Content-Type': 'application/json'}}
       );
 
       // (Lines below) using fetch
-      // const response = await fetch('http://localhost:5000/todos', {
+      // const response = await fetch('/todos', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
       //   body: JSON.stringify(body)
