@@ -17,7 +17,7 @@ app.use(express.json());
 
 if (process.env.NODE_ENV === 'production') {
   // Server static content
-  // npm run build
+  // npm run build (run this command to create a build file; in this case, I'm using yarn so the command should be `yarn build`)
   app.use(express.static(path.join(__dirname, 'client/build')));
 } 
 
