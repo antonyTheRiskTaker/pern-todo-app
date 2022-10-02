@@ -11,6 +11,7 @@ const InputTodo = () => {
       const body = { description };
 
       // (Lines below) using axios
+      // (Line below) proxy is only used in development so it will be ignored in production. So if there is no http://localhost:5000 (or url of any local server) then by default it is going to use heroku domain. Remember this heroku domain is just our server serving the build static content and also building the RESTful API.
       const response = await axios.post('/todos', 
       body, 
       {headers: {'Content-Type': 'application/json'}}
